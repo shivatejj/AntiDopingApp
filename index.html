@@ -3,78 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anti-Doping Gamified App</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <title>Gamified Anti-Doping App</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-firestore.js"></script>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Anti-Doping Challenge</h1>
-            <div id="auth-section">
-                <button id="login-btn">Login</button>
-                <button id="signup-btn">Sign Up</button>
-                <button id="logout-btn" style="display:none;">Logout</button>
+        <h1>Gamified Anti-Doping Quiz</h1>
+
+        <!-- Posters Section -->
+        <div id="posters" class="posters-container">
+            <div class="poster">
+                <img src="poster1.jpg" alt="What is Anti-Doping?">
+                <div class="poster-content">
+                    <h2>What is Anti-Doping?</h2>
+                    <p><strong>Definition:</strong> Anti-doping refers to the policies and regulations put in place to prevent the use of performance-enhancing drugs in sports.</p>
+                    <p><strong>Objective:</strong> To ensure fair play and the health of athletes.</p>
+                </div>
             </div>
-        </header>
 
-        <main>
-            <section id="game-section">
-                <h2>Real-World Athletics Game</h2>
-                <button id="start-game-btn">Start Athletics Game</button>
-                <div id="game-area" style="display:none;">
-                    <!-- Game Content Goes Here -->
-                    <p>Running Race: Click the button as many times as you can in 10 seconds!</p>
-                    <button id="race-btn">Run!</button>
-                    <p>Time Left: <span id="time-left">10</span>s</p>
-                    <p>Clicks: <span id="click-count">0</span></p>
+            <div class="poster">
+                <img src="poster2.jpg" alt="The Risks of Doping">
+                <div class="poster-content">
+                    <h2>The Risks of Doping</h2>
+                    <p><strong>Physical Risks:</strong> Serious health issues, including heart problems and hormonal imbalances.</p>
+                    <p><strong>Mental Risks:</strong> Anxiety, depression, and a diminished sense of well-being.</p>
                 </div>
-            </section>
-
-            <section id="posters-section">
-                <h2>Anti-Doping Posters</h2>
-                <div class="posters-container">
-                    <img src="poster1.jpg" alt="Poster 1" class="poster" data-question="What are the dangers of doping?">
-                    <img src="poster2.jpg" alt="Poster 2" class="poster" data-question="Why is fair play important?">
-                    <!-- Add more posters as needed -->
-                </div>
-            </section>
-
-            <section id="leaderboard-section">
-                <h2>Leaderboard</h2>
-                <table id="leaderboard-table">
-                    <thead>
-                        <tr>
-                            <th>Rank</th>
-                            <th>User</th>
-                            <th>Points</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Leaderboard Data -->
-                    </tbody>
-                </table>
-            </section>
-
-            <section id="badges-section">
-                <h2>Your Badges</h2>
-                <div class="badges-container">
-                    <!-- Badges will be displayed here -->
-                </div>
-            </section>
-        </main>
-
-        <!-- Modal for Questions -->
-        <div id="modal" class="modal">
-            <div class="modal-content">
-                <span class="close-btn">&times;</span>
-                <p id="question-text"></p>
-                <input type="text" id="answer-input" placeholder="Your Answer">
-                <button id="submit-answer-btn">Submit</button>
             </div>
+
+            <div class="poster">
+                <img src="poster3.jpg" alt="Commonly Banned Substances">
+                <div class="poster-content">
+                    <h2>Commonly Banned Substances</h2>
+                    <p><strong>Anabolic Steroids:</strong> Used to increase muscle mass and performance.</p>
+                    <p><strong>Stimulants:</strong> Enhance alertness and endurance.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="question-container">
+            <p id="question"></p>
+            <input type="text" id="answer" placeholder="Your Answer">
+            <button onclick="submitAnswer()">Submit Answer</button>
+        </div>
+        <div id="result"></div>
+        <div id="leaderboard">
+            <h2>Leaderboard</h2>
+            <ul id="leaderboard-list"></ul>
         </div>
     </div>
 
